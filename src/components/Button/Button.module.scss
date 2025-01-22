@@ -1,3 +1,5 @@
+@import "../../styles/vars.scss";
+
 .button {
   border-radius: 10px;
   padding: 10px;
@@ -8,10 +10,14 @@
 }
 
 .dark {
-  background-color: var(--black);
-  color: var(--white);
+  background-color: $black;
+  color: $white;
+
+  &:hover {
+    background-color: lighten($black, 10%);
+  }
 }
 
 .light {
-  background-color: var(--white);
+  background-color: $white;
 }
