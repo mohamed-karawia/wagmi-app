@@ -1,0 +1,6 @@
+@import "../styles/mixins.scss";
+
+.container {
+  @include centerer;
+  height: 100vh;
+}

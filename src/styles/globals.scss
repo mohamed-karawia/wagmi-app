@@ -11,9 +11,7 @@ body {
   font-family: "IBM Plex Sans", sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    background-color: #f8f8f8;
-    color: #181818;
-  }
+:root {
+  --black: #131313;
+  --white: #ffffff;
 }
