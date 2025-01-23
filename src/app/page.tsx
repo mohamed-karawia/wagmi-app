@@ -57,6 +57,10 @@ function App() {
     setIsWalletsModalOpen(true);
   };
 
+  const handleCloseModal = () => {
+    setIsWalletsModalOpen(false);
+  };
+
   const onWalletSelect = (connector: any) => {
     setIsWalletsModalOpen(false);
     connect({ connector });
@@ -69,10 +73,7 @@ function App() {
         setIsOpen={setIsWalletsModalOpen}
         title="Connect Wallet"
       >
-        <WalletList
-          connectors={connectors}
-          handleConnectWallet={onWalletSelect}
-        />
+        <WalletList onWalletConnection={handleCloseModal} />
       </Modal>
       <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
     </div>

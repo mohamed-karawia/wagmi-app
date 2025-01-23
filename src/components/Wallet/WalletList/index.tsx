@@ -7,18 +7,10 @@ import PhantomIcon from "../../../../public/icons/phantom.svg";
 import WalletConnectIcon from "../../../../public/icons/wallet-connect.svg";
 
 import styles from "./WalletList.module.scss";
-import { UseConnectorsReturnType, Connector } from "wagmi";
-
-type WalletIcons = {
-  MetaMask: ReactNode;
-  "Coinbase Wallet": ReactNode;
-  Phantom: ReactNode;
-  WalletConnect: ReactNode;
-};
+import { useConnect } from "wagmi";
 
 type WalletListType = {
-  connectors: any;
-  handleConnectWallet: (connector: any) => void;
+  onWalletConnection: () => void;
 };
 
 const WALLETS_ICONS: any = {
@@ -28,17 +20,21 @@ const WALLETS_ICONS: any = {
   WalletConnect: WalletConnectIcon,
 };
 
-const WalletList: FC<WalletListType> = ({
-  connectors,
-  handleConnectWallet,
-}) => {
+const WalletList: FC<WalletListType> = ({ onWalletConnection }) => {
+  const { connectors, connect } = useConnect();
+
+  const onWalletSelect = (connector: any) => {
+    connect({ connector });
+    onWalletConnection();
+  };
+
   return (
     <div className={styles.container}>
       {connectors.map((connector: any) => (
         <WalletItem
           title={connector.name}
           icon={WALLETS_ICONS[connector.name]}
-          onClick={() => handleConnectWallet(connector)}
+          onClick={() => onWalletSelect(connector)}
         />
       ))}
     </div>
