@@ -1,23 +1,12 @@
-import { FC, ReactNode } from "react";
+import { FC } from "react";
 
 import WalletItem from "../WalletItem";
-import MetaMaskIcon from "../../../../public/icons/metamsk.svg";
-import CoinBaseIcon from "../../../../public/icons/coinbase.svg";
-import PhantomIcon from "../../../../public/icons/phantom.svg";
-import WalletConnectIcon from "../../../../public/icons/wallet-connect.svg";
-
 import styles from "./WalletList.module.scss";
 import { useConnect } from "wagmi";
+import { WALLETS_ICONS } from "@/constants/WALLET_ICONS";
 
 type WalletListType = {
   onWalletConnection: () => void;
-};
-
-const WALLETS_ICONS: any = {
-  MetaMask: MetaMaskIcon,
-  "Coinbase Wallet": CoinBaseIcon,
-  Phantom: PhantomIcon,
-  WalletConnect: WalletConnectIcon,
 };
 
 const WalletList: FC<WalletListType> = ({ onWalletConnection }) => {

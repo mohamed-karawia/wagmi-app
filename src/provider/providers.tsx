@@ -1,5 +1,6 @@
 "use client";
 
+import { getConfig } from "@/wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
 import { State, WagmiProvider } from "wagmi";
@@ -7,18 +8,7 @@ import { http, createConfig } from "wagmi";
 import { mainnet, bsc } from "wagmi/chains";
 import { coinbaseWallet, metaMask, walletConnect } from "wagmi/connectors";
 
-export const config = createConfig({
-  chains: [mainnet, bsc],
-  connectors: [
-    metaMask(),
-    coinbaseWallet(),
-    walletConnect({ projectId: "20642d3cf110a601de466dba9b0d4206" }),
-  ],
-  transports: {
-    [mainnet.id]: http(),
-    [bsc.id]: http(),
-  },
-});
+const config = getConfig();
 
 export function Providers(props: {
   children: ReactNode;

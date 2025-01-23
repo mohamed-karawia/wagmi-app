@@ -1,7 +1,6 @@
 import { FC } from "react";
 import styles from "./WalletItem.module.scss";
 import Image from "next/image";
-import { UseConnectReturnType } from "wagmi";
 
 type WalletItemProps = {
   icon: string;

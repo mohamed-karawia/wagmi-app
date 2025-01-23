@@ -1,28 +1,33 @@
-import { http, cookieStorage, createConfig, createStorage } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
-import { coinbaseWallet, injected, walletConnect } from 'wagmi/connectors'
+import { http, cookieStorage, createConfig, createStorage } from "wagmi";
+import { mainnet, bsc } from "wagmi/chains";
+import {
+  coinbaseWallet,
+  injected,
+  metaMask,
+  walletConnect,
+} from "wagmi/connectors";
 
-export function getConfig() {
+export const getConfig = () => {
   return createConfig({
-    chains: [mainnet, sepolia],
+    chains: [mainnet, bsc],
     connectors: [
-      injected(),
+      metaMask(),
       coinbaseWallet(),
-      walletConnect({ projectId: process.env.NEXT_PUBLIC_WC_PROJECT_ID }),
+      walletConnect({ projectId: "20642d3cf110a601de466dba9b0d4206" }),
     ],
+    transports: {
+      [mainnet.id]: http(),
+      [bsc.id]: http(),
+    },
     storage: createStorage({
       storage: cookieStorage,
     }),
     ssr: true,
-    transports: {
-      [mainnet.id]: http(),
-      [sepolia.id]: http(),
-    },
-  })
-}
+  });
+};
 
-declare module 'wagmi' {
+declare module "wagmi" {
   interface Register {
-    config: ReturnType<typeof getConfig>
+    config: ReturnType<typeof getConfig>;
   }
 }
