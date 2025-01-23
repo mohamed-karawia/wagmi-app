@@ -1,9 +1,11 @@
 import { ButtonHTMLAttributes, FC } from "react";
-import styles from "./AddressButton.module.scss";
-import { shortenHexString } from "@/utils/strings";
 import { useBalance } from "wagmi";
-import DownIcon from "../../../../public/icons/down.svg";
 import Image from "next/image";
+
+import { shortenHexString } from "@/utils/strings";
+
+import DownIcon from "../../../../public/icons/down.svg";
+import styles from "./AddressButton.module.scss";
 
 interface AddressButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   address: `0x${string}`;

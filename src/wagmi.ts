@@ -1,11 +1,6 @@
 import { http, cookieStorage, createConfig, createStorage } from "wagmi";
 import { mainnet, bsc } from "wagmi/chains";
-import {
-  coinbaseWallet,
-  injected,
-  metaMask,
-  walletConnect,
-} from "wagmi/connectors";
+import { coinbaseWallet, metaMask, walletConnect } from "wagmi/connectors";
 
 export const getConfig = () => {
   return createConfig({

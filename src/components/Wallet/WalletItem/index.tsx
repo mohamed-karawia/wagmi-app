@@ -1,6 +1,7 @@
 import { FC } from "react";
-import styles from "./WalletItem.module.scss";
 import Image from "next/image";
+
+import styles from "./WalletItem.module.scss";
 
 type WalletItemProps = {
   icon: string;

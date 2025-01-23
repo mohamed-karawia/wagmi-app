@@ -1,8 +1,8 @@
-import "../styles/globals.scss";
+import { type ReactNode } from "react";
 import type { Metadata } from "next";
+import "../styles/globals.scss";
 import { Inter } from "next/font/google";
 import { headers } from "next/headers";
-import { type ReactNode } from "react";
 import { cookieToInitialState } from "wagmi";
 
 import { getConfig } from "../wagmi";

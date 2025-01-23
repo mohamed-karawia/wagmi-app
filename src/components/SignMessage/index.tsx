@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useSignMessage } from "wagmi";
+
 import Button from "../Button";
 import styles from "./SignMessage.module.scss";
 import ModalComponent from "../Modal";

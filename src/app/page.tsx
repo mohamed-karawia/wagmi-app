@@ -1,12 +1,14 @@
 "use client";
 
+import { useState } from "react";
 import { useAccount } from "wagmi";
-import styles from "./page.module.scss";
+
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
-import { useState } from "react";
-import WalletList from "@/components/Wallet/WalletList";
 import Account from "@/components/Account";
+import WalletList from "@/components/Wallet/WalletList";
+
+import styles from "./page.module.scss";
 
 function App() {
   const [isWalletsModalOpen, setIsWalletsModalOpen] = useState(false);

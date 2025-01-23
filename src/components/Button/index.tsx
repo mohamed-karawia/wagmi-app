@@ -1,6 +1,6 @@
-import { ButtonHTMLAttributes, FC, ReactNode } from "react";
-import styles from "./Button.module.scss";
+import { ButtonHTMLAttributes, FC } from "react";
 import Image from "next/image";
+import styles from "./Button.module.scss";
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "dark" | "light";

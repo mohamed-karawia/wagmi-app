@@ -1,12 +1,15 @@
 import React, { useMemo } from "react";
 import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
-import Dropdown, { OptionType } from "../Dropdown";
+
+import { CHAINS_ICONS } from "@/constants/CHAINS_ICONS";
+import { mapItemToDropdownItem } from "@/utils/dropdown";
+import Button from "@/components/Button";
+import Dropdown, { OptionType } from "@/components/Dropdown";
+import SignMessage from "@/components/SignMessage";
+
 import styles from "./Account.module.scss";
 import Address from "./AddressButton";
-import Button from "../Button";
 import LogoutIcon from "../../../public/icons/logout.svg";
-import SignMessage from "../SignMessage";
-import { CHAINS_ICONS } from "@/constants/CHAINS_ICONS";
 
 type CurrentChainProps = {
   label: string;
@@ -24,20 +27,12 @@ const Account = () => {
   const { chains, switchChain } = useSwitchChain();
 
   const currentChain: CurrentChainProps = useMemo(
-    () => ({
-      label: chain?.name || "",
-      value: chain?.id,
-      icon: chain?.name && CHAINS_ICONS[chain.name],
-    }),
+    () => mapItemToDropdownItem(chain, CHAINS_ICONS),
     [chain]
   );
 
   const chainsOptions: OptionType[] = useMemo(() => {
-    return chains.map((chain) => ({
-      label: chain?.name,
-      value: chain?.id,
-      icon: chain.name && CHAINS_ICONS[chain.name],
-    }));
+    return chains.map((chain) => mapItemToDropdownItem(chain, CHAINS_ICONS));
   }, [chains]);
 
   const handleChainSwitching = (option: OptionType | null) => {

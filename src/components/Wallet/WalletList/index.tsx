@@ -1,9 +1,10 @@
 import { FC } from "react";
+import { useConnect } from "wagmi";
+
+import { WALLETS_ICONS } from "@/constants/WALLET_ICONS";
 
 import WalletItem from "../WalletItem";
 import styles from "./WalletList.module.scss";
-import { useConnect } from "wagmi";
-import { WALLETS_ICONS } from "@/constants/WALLET_ICONS";
 
 type WalletListType = {
   onWalletConnection: () => void;
