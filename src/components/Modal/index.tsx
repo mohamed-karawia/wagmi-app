@@ -40,6 +40,7 @@ const ModalComponent: FC<ModalProps> = ({
       onRequestClose={closeModal}
       style={customStyles}
       contentLabel="Example Modal"
+      ariaHideApp={false}
     >
       <div className={styles.heading}>
         <h3 className={styles.title}>{title}</h3>

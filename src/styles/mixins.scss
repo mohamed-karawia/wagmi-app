@@ -3,3 +3,9 @@
   justify-content: center;
   align-items: center;
 }
+
+@mixin gray-container {
+  background-color: $light-gray;
+  border-radius: 8px;
+  border: none;
+}

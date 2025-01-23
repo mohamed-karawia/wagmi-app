@@ -1,0 +1,22 @@
+@import "../../../styles/mixins.scss";
+@import "../../../styles/vars.scss";
+
+.button {
+  @include centerer;
+  @include gray-container;
+  padding: 10px;
+  font-size: $medium-font;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  gap: 6px;
+
+  &:hover {
+    background-color: darken($light-gray, 5%);
+  }
+
+  .balance {
+    padding: 0 6px;
+    border-right: 1px solid $gray;
+  }
+}

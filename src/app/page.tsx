@@ -14,21 +14,22 @@ import Modal from "@/components/Modal";
 import { useState } from "react";
 import WalletItem from "@/components/Wallet/WalletItem";
 import WalletList from "@/components/Wallet/WalletList";
+import Account from "@/components/Account";
 
-export function Account() {
-  const { address } = useAccount();
-  const { disconnect } = useDisconnect();
-  const { data: ensName } = useEnsName({ address });
-  const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
+// export function Account() {
+//   const { address } = useAccount();
+//   const { disconnect } = useDisconnect();
+//   const { data: ensName } = useEnsName({ address });
+//   const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
 
-  return (
-    <div>
-      {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
-      {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
-      <button onClick={() => disconnect()}>Disconnect</button>
-    </div>
-  );
-}
+//   return (
+//     <div>
+//       {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
+//       {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
+//       <button onClick={() => disconnect()}>Disconnect</button>
+//     </div>
+//   );
+// }
 
 export function WalletOptions() {
   const { connectors, connect } = useConnect();
@@ -51,9 +52,9 @@ function App() {
   const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
   const { disconnect } = useDisconnect();
+  const { isConnected } = useAccount();
 
   const handleOpenWalletsModal = () => {
-    console.log("open");
     setIsWalletsModalOpen(true);
   };
 
@@ -75,7 +76,11 @@ function App() {
       >
         <WalletList onWalletConnection={handleCloseModal} />
       </Modal>
-      <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
+      {isConnected ? (
+        <Account />
+      ) : (
+        <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
+      )}
     </div>
   );
 }

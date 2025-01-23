@@ -32,6 +32,7 @@ const WalletList: FC<WalletListType> = ({ onWalletConnection }) => {
     <div className={styles.container}>
       {connectors.map((connector: any) => (
         <WalletItem
+          key={connector.name}
           title={connector.name}
           icon={WALLETS_ICONS[connector.name]}
           onClick={() => onWalletSelect(connector)}
