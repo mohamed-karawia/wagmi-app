@@ -1,6 +1,8 @@
 @import "../../styles/vars.scss";
+@import "../../styles/mixins.scss";
 
 .button {
+  @include centerer;
   border-radius: 10px;
   padding: 10px;
   border: none;
@@ -8,6 +10,7 @@
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+  gap: 6px;
 }
 
 .dark {
@@ -21,4 +24,12 @@
 
 .light {
   background-color: $white;
+
+  &:hover {
+    background-color: darken($white, 10%);
+  }
+}
+
+.full-width {
+  width: 100%;
 }

@@ -20,7 +20,7 @@ const AddressButton: FC<AddressButtonProps> = ({ address }) => {
         {balance?.formatted} {balance?.symbol}
       </div>
       {shortenHexString(address)}
-      <Image width={20} height={20} src={DownIcon} />
+      <Image width={20} height={20} src={DownIcon} alt="chevron-down" />
     </button>
   );
 };

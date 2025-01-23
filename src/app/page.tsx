@@ -1,35 +1,12 @@
 "use client";
 
-import {
-  useAccount,
-  useConnect,
-  useDisconnect,
-  Connector,
-  useEnsName,
-  useEnsAvatar,
-} from "wagmi";
+import { useAccount, useConnect } from "wagmi";
 import styles from "./page.module.scss";
 import Button from "@/components/Button";
 import Modal from "@/components/Modal";
 import { useState } from "react";
-import WalletItem from "@/components/Wallet/WalletItem";
 import WalletList from "@/components/Wallet/WalletList";
 import Account from "@/components/Account";
-
-// export function Account() {
-//   const { address } = useAccount();
-//   const { disconnect } = useDisconnect();
-//   const { data: ensName } = useEnsName({ address });
-//   const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
-
-//   return (
-//     <div>
-//       {ensAvatar && <img alt="ENS Avatar" src={ensAvatar} />}
-//       {address && <div>{ensName ? `${ensName} (${address})` : address}</div>}
-//       <button onClick={() => disconnect()}>Disconnect</button>
-//     </div>
-//   );
-// }
 
 export function WalletOptions() {
   const { connectors, connect } = useConnect();
@@ -49,9 +26,6 @@ function ConnectWallet() {
 
 function App() {
   const [isWalletsModalOpen, setIsWalletsModalOpen] = useState(false);
-  const account = useAccount();
-  const { connectors, connect, status, error } = useConnect();
-  const { disconnect } = useDisconnect();
   const { isConnected } = useAccount();
 
   const handleOpenWalletsModal = () => {
@@ -60,11 +34,6 @@ function App() {
 
   const handleCloseModal = () => {
     setIsWalletsModalOpen(false);
-  };
-
-  const onWalletSelect = (connector: any) => {
-    setIsWalletsModalOpen(false);
-    connect({ connector });
   };
 
   return (

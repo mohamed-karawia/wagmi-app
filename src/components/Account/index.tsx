@@ -1,17 +1,13 @@
-import React, { ChangeEvent, ReactNode, useEffect, useMemo } from "react";
-import {
-  useAccount,
-  useBalance,
-  useDisconnect,
-  useEnsAvatar,
-  useEnsName,
-  useSwitchChain,
-} from "wagmi";
+import React, { ReactNode, useMemo } from "react";
+import { useAccount, useDisconnect, useSwitchChain } from "wagmi";
 import Dropdown from "../Dropdown";
 import ETHIcon from "../../../public/icons/eth.svg";
 import BSCIcon from "../../../public/icons/bsc.svg";
 import styles from "./Account.module.scss";
 import Address from "./AddressButton";
+import Button from "../Button";
+import LogoutIcon from "../../../public/icons/logout.svg";
+import SignMessage from "../SignMessage";
 
 const CHAINS_ICONS = {
   Ethereum: ETHIcon,
@@ -28,10 +24,7 @@ const Account = () => {
   const { address, chain } = useAccount();
 
   const { disconnect } = useDisconnect();
-  const { data: ensName } = useEnsName({ address });
-  const { data: ensAvatar } = useEnsAvatar({ name: ensName! });
-  const { chains, switchChain, isSuccess, isError, data, isPending } =
-    useSwitchChain();
+  const { chains, switchChain } = useSwitchChain();
 
   const currentChain = useMemo(
     () => ({
@@ -54,6 +47,10 @@ const Account = () => {
     switchChain({ chainId: option.value });
   };
 
+  const handleDisconnect = () => {
+    disconnect();
+  };
+
   return (
     <div className={styles["container"]}>
       <Dropdown
@@ -62,7 +59,14 @@ const Account = () => {
         value={currentChain}
       />
       <div className={styles["actions-container"]}>
-        <Address address={address} />
+        {address && <Address address={address} />}
+
+        <div className={styles["buttons-container"]}>
+          <SignMessage />
+          <Button variant="light" icon={LogoutIcon} onClick={handleDisconnect}>
+            Disconnect
+          </Button>
+        </div>
       </div>
     </div>
   );

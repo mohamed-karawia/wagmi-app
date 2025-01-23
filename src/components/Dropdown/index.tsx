@@ -23,7 +23,7 @@ const selectStyles = {
     backgroundColor: "#f2f5f8",
     border: "none",
     borderRadius: "10px",
-    minWidth: "200px",
+    minWidth: "220px",
     cursor: "pointer",
   }),
   multiValue: (base) => ({
