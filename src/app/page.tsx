@@ -10,6 +10,10 @@ import {
 } from "wagmi";
 import styles from "./page.module.scss";
 import Button from "@/components/Button";
+import Modal from "@/components/Modal";
+import { useState } from "react";
+import WalletItem from "@/components/Wallet/WalletItem";
+import WalletList from "@/components/Wallet/WalletList";
 
 export function Account() {
   const { address } = useAccount();
@@ -43,14 +47,34 @@ function ConnectWallet() {
 }
 
 function App() {
+  const [isWalletsModalOpen, setIsWalletsModalOpen] = useState(false);
   const account = useAccount();
   const { connectors, connect, status, error } = useConnect();
   const { disconnect } = useDisconnect();
 
+  const handleOpenWalletsModal = () => {
+    console.log("open");
+    setIsWalletsModalOpen(true);
+  };
+
+  const onWalletSelect = (connector: any) => {
+    setIsWalletsModalOpen(false);
+    connect({ connector });
+  };
+
   return (
     <div className={styles.container}>
-      <ConnectWallet />
-      <Button>Connect Wallet</Button>
+      <Modal
+        isOpen={isWalletsModalOpen}
+        setIsOpen={setIsWalletsModalOpen}
+        title="Connect Wallet"
+      >
+        <WalletList
+          connectors={connectors}
+          handleConnectWallet={onWalletSelect}
+        />
+      </Modal>
+      <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
     </div>
   );
 }

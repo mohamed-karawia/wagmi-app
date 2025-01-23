@@ -4,9 +4,10 @@
   border-radius: 10px;
   padding: 10px;
   border: none;
-  font-size: 14px;
+  font-size: $medium-font;
   font-weight: 500;
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .dark {

@@ -1,0 +1,22 @@
+@import "../../../styles/vars.scss";
+
+.container {
+  background-color: $light-black;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 16px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: lighten($black, 10%);
+  }
+}
+
+.title {
+  font-size: $medium-font;
+  color: $white;
+  font-weight: 500;
+}
