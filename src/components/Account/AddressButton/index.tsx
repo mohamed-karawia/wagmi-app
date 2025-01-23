@@ -17,8 +17,8 @@ const AddressButton: FC<AddressButtonProps> = ({ address }) => {
   });
 
   return (
-    <button className={styles.button}>
-      <div className={styles.balance}>
+    <button className={styles["button"]}>
+      <div className={styles["balance"]}>
         {balance?.formatted} {balance?.symbol}
       </div>
       {shortenHexString(address)}

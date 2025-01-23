@@ -19,7 +19,7 @@ const WalletList: FC<WalletListType> = ({ onWalletConnection }) => {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles["container"]}>
       {connectors.map((connector: any) => (
         <WalletItem
           key={connector.name}

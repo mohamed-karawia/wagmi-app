@@ -23,7 +23,7 @@ function App() {
   };
 
   return (
-    <div className={styles.container}>
+    <div className={styles["container"]}>
       <Modal
         isOpen={isWalletsModalOpen}
         setIsOpen={setIsWalletsModalOpen}

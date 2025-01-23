@@ -42,13 +42,13 @@ const ModalComponent: FC<ModalProps> = ({
       contentLabel="Example Modal"
       ariaHideApp={false}
     >
-      <div className={styles.heading}>
-        <h3 className={styles.title}>{title}</h3>
-        <span className={styles.icon} onClick={closeModal}>
+      <div className={styles["heading"]}>
+        <h3 className={styles["title"]}>{title}</h3>
+        <span className={styles["icon"]} onClick={closeModal}>
           &#x2715;
         </span>
       </div>
-      <div className={styles.content}>{children}</div>
+      <div className={styles["content"]}>{children}</div>
     </Modal>
   );
 };

@@ -70,7 +70,7 @@ const Dropdown: FC<DropdownProps> = ({ options, handleChange, value }) => {
   return (
     <div>
       <Select<OptionType>
-        className={styles.select}
+        className={styles["select"]}
         value={value}
         options={options}
         onChange={handleChange}
