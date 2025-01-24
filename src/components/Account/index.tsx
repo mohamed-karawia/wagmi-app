@@ -29,6 +29,7 @@ const Account = () => {
     chains,
     switchChain,
     isError: isSwitchingChainError,
+    isPending,
   } = useSwitchChain();
 
   const currentChain: CurrentChainProps = useMemo(
@@ -59,6 +60,7 @@ const Account = () => {
             options={chainsOptions}
             handleChange={handleChainSwitching}
             value={currentChain}
+            isLoading={isPending}
           />
         </div>
 

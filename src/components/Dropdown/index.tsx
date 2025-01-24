@@ -18,6 +18,7 @@ interface DropdownProps {
   options: OptionType[];
   handleChange: (selectedOption: OptionType | null) => void;
   value: OptionType | null;
+  isLoading?: boolean;
 }
 
 const selectStyles: StylesConfig<OptionType, false> = {
@@ -66,7 +67,12 @@ const SingleValue: FC<SingleValueProps<OptionType, false>> = ({
   </components.SingleValue>
 );
 
-const Dropdown: FC<DropdownProps> = ({ options, handleChange, value }) => {
+const Dropdown: FC<DropdownProps> = ({
+  options,
+  handleChange,
+  value,
+  ...props
+}) => {
   return (
     <div>
       <Select<OptionType>
@@ -80,6 +86,7 @@ const Dropdown: FC<DropdownProps> = ({ options, handleChange, value }) => {
           IndicatorSeparator: () => null,
         }}
         styles={selectStyles}
+        {...props}
       />
     </div>
   );
