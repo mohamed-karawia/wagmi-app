@@ -23,7 +23,7 @@ interface SelectedOption extends OptionType {
 }
 
 const Account = () => {
-  const { address, chain } = useAccount();
+  const { address, chain, isConnecting } = useAccount();
   const { disconnect, isError: isDisconnectError } = useDisconnect();
   const {
     chains,
@@ -65,7 +65,9 @@ const Account = () => {
         </div>
 
         <div className={styles["actions-container"]}>
-          {address && <Address address={address} />}
+          {address && (
+            <Address isAddressLoading={isConnecting} address={address} />
+          )}
 
           <div className={styles["buttons-container"]}>
             <SignMessage />

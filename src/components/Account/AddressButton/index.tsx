@@ -13,9 +13,13 @@ import ErrorMessage from "@/components/ErrorMessage";
 
 interface AddressButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   address: `0x${string}`;
+  isAddressLoading?: boolean;
 }
 
-const AddressButton: FC<AddressButtonProps> = ({ address }) => {
+const AddressButton: FC<AddressButtonProps> = ({
+  address,
+  isAddressLoading,
+}) => {
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
   const {
     data: balance,
@@ -29,22 +33,36 @@ const AddressButton: FC<AddressButtonProps> = ({ address }) => {
     setIsAddressModalOpen(true);
   };
 
+  const renderAddress = () => {
+    if (isAddressLoading) {
+      return (
+        <div className={styles["button"]}>
+          <Spinner size={20} color="black" />
+        </div>
+      );
+    } else {
+      return (
+        <button className={styles["button"]} onClick={openAddressModal}>
+          <div className={styles["balance"]}>
+            {isLoading ? (
+              <Spinner size={20} color="black" />
+            ) : (
+              <p aria-label={balance?.formatted}>
+                {balance?.formatted} {balance?.symbol}
+              </p>
+            )}
+          </div>
+          <Image width={20} height={20} src={SynergyIcon} alt="synergy" />
+          {shortenHexString(address)}
+          <Image width={20} height={20} src={DownIcon} alt="chevron-down" />
+        </button>
+      );
+    }
+  };
+
   return (
     <>
-      <button className={styles["button"]} onClick={openAddressModal}>
-        <div className={styles["balance"]}>
-          {isLoading ? (
-            <Spinner size={20} color="black" />
-          ) : (
-            <p aria-label={balance?.formatted}>
-              {balance?.formatted} {balance?.symbol}
-            </p>
-          )}
-        </div>
-        <Image width={20} height={20} src={SynergyIcon} alt="synergy" />
-        {shortenHexString(address)}
-        <Image width={20} height={20} src={DownIcon} alt="chevron-down" />
-      </button>
+      {renderAddress()}
       {isError && <ErrorMessage message="Failed to fetch balance" />}
       <AddressModal
         isOpen={isAddressModalOpen}
