@@ -43,7 +43,11 @@ const AddressModal: FC<AddressModalProps> = ({
         {isAddressCopied ? (
           <p>Copied!</p>
         ) : (
-          <Button variant="light" onClick={handleCopyAddress}>
+          <Button
+            variant="light"
+            onClick={handleCopyAddress}
+            aria-label="Copy address"
+          >
             Copy Address
           </Button>
         )}

@@ -28,10 +28,15 @@ function App() {
       {isConnected ? (
         <Account />
       ) : (
-        <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
+        <Button
+          onClick={handleOpenWalletsModal}
+          aria-label="Open wallet connection modal"
+        >
+          Connect Wallet
+        </Button>
       )}
       {isConnectError && (
-        <div className={styles["container__error"]}>
+        <div className={styles["container__error"]} role="alert">
           <ErrorMessage message="Failed to connect wallet" />
         </div>
       )}

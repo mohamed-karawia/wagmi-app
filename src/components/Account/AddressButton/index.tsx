@@ -36,9 +36,9 @@ const AddressButton: FC<AddressButtonProps> = ({ address }) => {
           {isLoading ? (
             <Spinner size={20} color="black" />
           ) : (
-            <>
+            <p aria-label={balance?.formatted}>
               {balance?.formatted} {balance?.symbol}
-            </>
+            </p>
           )}
         </div>
         <Image width={20} height={20} src={SynergyIcon} alt="synergy" />

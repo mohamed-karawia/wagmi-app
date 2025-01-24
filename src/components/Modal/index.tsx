@@ -44,8 +44,14 @@ const ModalComponent: FC<ModalProps> = ({
       onAfterClose={onAfterClose}
     >
       <div className={styles["heading"]}>
-        <h3 className={styles["title"]}>{title}</h3>
-        <span className={styles["icon"]} onClick={closeModal}>
+        <h3 className={styles["title"]} aria-label={title}>
+          {title}
+        </h3>
+        <span
+          className={styles["icon"]}
+          onClick={closeModal}
+          aria-label="Close popup"
+        >
           &#x2715;
         </span>
       </div>

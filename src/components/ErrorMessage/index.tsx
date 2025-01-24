@@ -6,7 +6,11 @@ interface ErrorMessageProps {
 }
 
 const ErrorMessage: FC<ErrorMessageProps> = ({ message }) => {
-  return <p className={styles["message"]}>{message}</p>;
+  return (
+    <p className={styles["message"]} aria-label={message}>
+      {message}
+    </p>
+  );
 };
 
 export default ErrorMessage;

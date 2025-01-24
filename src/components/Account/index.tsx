@@ -72,6 +72,7 @@ const Account = () => {
               variant="light"
               icon={LogoutIcon}
               onClick={handleDisconnect}
+              aria-label="Disconnect wallet"
             >
               Disconnect
             </Button>
