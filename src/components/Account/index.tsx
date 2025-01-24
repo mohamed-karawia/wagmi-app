@@ -10,6 +10,7 @@ import SignMessage from "@/components/SignMessage";
 import styles from "./Account.module.scss";
 import Address from "./AddressButton";
 import LogoutIcon from "../../../public/icons/logout.svg";
+import ErrorMessage from "../ErrorMessage";
 
 type CurrentChainProps = {
   label: string;
@@ -23,8 +24,12 @@ interface SelectedOption extends OptionType {
 
 const Account = () => {
   const { address, chain } = useAccount();
-  const { disconnect } = useDisconnect();
-  const { chains, switchChain } = useSwitchChain();
+  const { disconnect, isError: isDisconnectError } = useDisconnect();
+  const {
+    chains,
+    switchChain,
+    isError: isSwitchingChainError,
+  } = useSwitchChain();
 
   const currentChain: CurrentChainProps = useMemo(
     () => mapItemToDropdownItem(chain, CHAINS_ICONS),
@@ -47,23 +52,46 @@ const Account = () => {
   };
 
   return (
-    <div className={styles["container"]}>
-      <Dropdown
-        options={chainsOptions}
-        handleChange={handleChainSwitching}
-        value={currentChain}
-      />
-      <div className={styles["actions-container"]}>
-        {address && <Address address={address} />}
+    <div className={styles.container}>
+      <div className={styles["content"]}>
+        <div>
+          <Dropdown
+            options={chainsOptions}
+            handleChange={handleChainSwitching}
+            value={currentChain}
+          />
+        </div>
 
-        <div className={styles["buttons-container"]}>
-          <SignMessage />
+        <div className={styles["actions-container"]}>
+          {address && <Address address={address} />}
 
-          <Button variant="light" icon={LogoutIcon} onClick={handleDisconnect}>
-            Disconnect
-          </Button>
+          <div className={styles["buttons-container"]}>
+            <SignMessage />
+
+            <Button
+              variant="light"
+              icon={LogoutIcon}
+              onClick={handleDisconnect}
+            >
+              Disconnect
+            </Button>
+          </div>
         </div>
       </div>
+      {isDisconnectError && (
+        <ErrorMessage
+          message="
+        Failed to disconnect wallet
+      "
+        />
+      )}
+      {isSwitchingChainError && (
+        <ErrorMessage
+          message="
+        Failed to switch chain
+        "
+        />
+      )}
     </div>
   );
 };

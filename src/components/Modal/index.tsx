@@ -2,12 +2,13 @@ import { FC, ReactNode } from "react";
 import Modal from "react-modal";
 import styles from "./Modal.module.scss";
 
-type ModalProps = {
+interface ModalProps {
   isOpen: boolean;
   setIsOpen: (state: boolean) => void;
   title?: string;
   children: ReactNode;
-};
+  onAfterClose?: () => void;
+}
 
 const customStyles = {
   content: {
@@ -29,6 +30,7 @@ const ModalComponent: FC<ModalProps> = ({
   setIsOpen,
   title,
   children,
+  onAfterClose,
 }) => {
   const closeModal = () => {
     setIsOpen(false);
@@ -39,8 +41,8 @@ const ModalComponent: FC<ModalProps> = ({
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      contentLabel="Example Modal"
       ariaHideApp={false}
+      onAfterClose={onAfterClose}
     >
       <div className={styles["heading"]}>
         <h3 className={styles["title"]}>{title}</h3>

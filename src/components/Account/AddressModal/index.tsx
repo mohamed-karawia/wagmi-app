@@ -20,19 +20,33 @@ const AddressModal: FC<AddressModalProps> = ({
   address,
 }) => {
   const [isAddressCopied, setIsAddressCopied] = useState(false);
+
   const handleCopyAddress = () => {
     navigator.clipboard.writeText(address);
     setIsAddressCopied(true);
   };
 
+  const handleClearCopy = () => {
+    setIsAddressCopied(false);
+  };
+
   return (
-    <ModalComponent isOpen={isOpen} setIsOpen={setIsOpen} title="Your Address">
+    <ModalComponent
+      isOpen={isOpen}
+      setIsOpen={setIsOpen}
+      onAfterClose={handleClearCopy}
+      title="Your Address"
+    >
       <div className={styles["container"]}>
         <Image width={80} height={80} src={SynergyIcon} alt="synergy" />
-        <p>{shortenHexString(address)}</p>
-        <Button variant="light" onClick={handleCopyAddress}>
-          {isAddressCopied ? "Copied!" : "Copy Address"}
-        </Button>
+        <h6>{shortenHexString(address)}</h6>
+        {isAddressCopied ? (
+          <p>Copied!</p>
+        ) : (
+          <Button variant="light" onClick={handleCopyAddress}>
+            Copy Address
+          </Button>
+        )}
       </div>
     </ModalComponent>
   );

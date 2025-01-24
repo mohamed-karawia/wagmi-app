@@ -6,9 +6,9 @@
   align-items: center;
   justify-content: center;
   gap: 30px;
+  color: $white;
 
-  p {
+  h6 {
     font-size: $large-font;
-    color: $white;
   }
 }

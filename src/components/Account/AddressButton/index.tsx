@@ -8,6 +8,8 @@ import DownIcon from "../../../../public/icons/down.svg";
 import SynergyIcon from "../../../../public/icons/synergy.svg";
 import styles from "./AddressButton.module.scss";
 import AddressModal from "../AddressModal";
+import Spinner from "@/components/Spinner";
+import ErrorMessage from "@/components/ErrorMessage";
 
 interface AddressButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   address: `0x${string}`;
@@ -15,7 +17,11 @@ interface AddressButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const AddressButton: FC<AddressButtonProps> = ({ address }) => {
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-  const { data: balance } = useBalance({
+  const {
+    data: balance,
+    isLoading,
+    isError,
+  } = useBalance({
     address,
   });
 
@@ -27,12 +33,19 @@ const AddressButton: FC<AddressButtonProps> = ({ address }) => {
     <>
       <button className={styles["button"]} onClick={openAddressModal}>
         <div className={styles["balance"]}>
-          {balance?.formatted} {balance?.symbol}
+          {isLoading ? (
+            <Spinner size={20} color="black" />
+          ) : (
+            <>
+              {balance?.formatted} {balance?.symbol}
+            </>
+          )}
         </div>
         <Image width={20} height={20} src={SynergyIcon} alt="synergy" />
         {shortenHexString(address)}
         <Image width={20} height={20} src={DownIcon} alt="chevron-down" />
       </button>
+      {isError && <ErrorMessage message="Failed to fetch balance" />}
       <AddressModal
         isOpen={isAddressModalOpen}
         setIsOpen={setIsAddressModalOpen}

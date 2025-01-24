@@ -2,5 +2,10 @@
 
 .container {
   @include centerer;
+  flex-direction: column;
   height: 100vh;
+
+  &__error {
+    margin-top: 10px;
+  }
 }

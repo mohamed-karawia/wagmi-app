@@ -10,16 +10,28 @@ import ModalComponent from "@/components/Modal";
 type WalletListType = {
   isWalletsModalOpen: boolean;
   setIsWalletsModalOpen: (value: boolean) => void;
+  handleConnectError: (isError: boolean) => void;
 };
 
 const WalletList: FC<WalletListType> = ({
   isWalletsModalOpen,
   setIsWalletsModalOpen,
+  handleConnectError,
 }) => {
   const { connectors, connect } = useConnect();
 
   const onWalletSelect = (connector: any) => {
-    connect({ connector });
+    connect(
+      { connector },
+      {
+        onSuccess: () => {
+          handleConnectError(false);
+        },
+        onError: () => {
+          handleConnectError(true);
+        },
+      }
+    );
     setIsWalletsModalOpen(false);
   };
 
