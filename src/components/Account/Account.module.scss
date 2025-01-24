@@ -12,6 +12,10 @@
   display: flex;
   align-items: flex-start;
   gap: 20px;
+
+  @media only screen and (max-width: $mobile) {
+    flex-direction: column;
+  }
 }
 
 .actions-container {
