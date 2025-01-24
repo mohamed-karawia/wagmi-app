@@ -18,6 +18,7 @@ const SignMessage = () => {
       {
         onSuccess: () => {
           setMessage("");
+          setIsMessageModalOpen(false);
         },
       }
     );
