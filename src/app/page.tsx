@@ -18,24 +18,18 @@ function App() {
     setIsWalletsModalOpen(true);
   };
 
-  const handleCloseModal = () => {
-    setIsWalletsModalOpen(false);
-  };
-
   return (
     <div className={styles["container"]}>
-      <Modal
-        isOpen={isWalletsModalOpen}
-        setIsOpen={setIsWalletsModalOpen}
-        title="Connect Wallet"
-      >
-        <WalletList onWalletConnection={handleCloseModal} />
-      </Modal>
       {isConnected ? (
         <Account />
       ) : (
         <Button onClick={handleOpenWalletsModal}>Connect Wallet</Button>
       )}
+
+      <WalletList
+        isWalletsModalOpen={isWalletsModalOpen}
+        setIsWalletsModalOpen={setIsWalletsModalOpen}
+      />
     </div>
   );
 }
