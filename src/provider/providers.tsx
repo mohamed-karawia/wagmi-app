@@ -1,6 +1,6 @@
 "use client";
 
-import { getConfig } from "@/wagmi";
+import { getConfig } from "@/utils/wagmi";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useState } from "react";
 import { State, WagmiProvider } from "wagmi";

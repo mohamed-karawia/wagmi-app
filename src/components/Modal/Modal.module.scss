@@ -19,4 +19,9 @@
 
 .content {
   margin-top: 15px;
+  min-width: 496px;
+
+  @media only screen and (max-width: $mobile) {
+    min-width: 300px;
+  }
 }

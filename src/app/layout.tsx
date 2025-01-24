@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { headers } from "next/headers";
 import { cookieToInitialState } from "wagmi";
 
-import { getConfig } from "../wagmi";
+import { getConfig } from "../utils/wagmi";
 import { Providers } from "../provider/providers";
 
 const inter = Inter({

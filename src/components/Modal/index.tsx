@@ -21,7 +21,6 @@ const customStyles = {
     backgroundColor: "#131313",
     borderRadius: "24px",
     padding: "16px 20px",
-    minWidth: "496px",
   },
 };
 
